@@ -1,0 +1,13 @@
+```{r}
+install.packages('readr')
+library('readr')
+
+
+df <- read_tsv("/Users/anthonygoss/Downloads/IVR_2018_export_historical.txt")
+```
+
+
+```{r}
+counts = table(df$election_cycle)
+print(counts)
+```
