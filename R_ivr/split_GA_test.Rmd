@@ -1,0 +1,55 @@
+# Tony's replication of Prabhat's code
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library('knitr')
+
+library('RODBC')
+
+library("dplyr")
+
+library("readxl")
+
+library("readxl")
+
+#install.packages("xlsx")
+#library("xlsx")
+```
+
+Beginning of actual code !
+
+```{r}
+# Read in sample file
+GA_1 <- read.delim("/Users/anthonygoss/Projects/circle/R_ivr/test_data/IVR_2018_export_ev_CR-7883_2019-04-16.txt")
+```
+
+```{r}
+# Remove blank entries - just a quirk of this data
+GA_2 <- GA_1 %>%
+  filter(!(is.na(subgroup) | subgroup == ""))
+
+GA_b <- split(GA_2, (0:nrow(GA_2) %/% 10000))
+
+counter <- 0
+
+# Write code to file using .tsv format
+for (i in GA_b) {
+  name <- paste("GA",counter)
+  counter <- counter + 1
+  setwd("/Users/anthonygoss/Projects/circle/R_ivr/data")
+  write.table(i, file = name,sep="\t")
+}
+```
+```{r}
+columns <- colnames(GA_2)
+```
+
+

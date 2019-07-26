@@ -1,0 +1,3 @@
+Column names necessarty for Quality Check data pipeline:
+
+"org","subgroup","subgroup_rtv","ANID","state","application_id_number","global_typecode","program_type","requireddate","requireddatetype","voterstatus","countyname","countyfips","congressionaldistrict","geoid","es_n2008g","es_n2010g","es_n2012g","es_n2014g","es_n2016g","es_n2018g","es_n2008p","es_n2010p","es_n2012p","es_n2014p","es_n2016p","es_n2018p","e2008svm","e2010svm","e2012svm","e2014svm","e2016svm","e2018svm","age","income","race","ethnicity","gender","married","partyaffiliation","education","cass_city","cass_state","cass_zip","cass_countyfips","raw_race"
