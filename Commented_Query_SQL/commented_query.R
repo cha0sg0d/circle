@@ -38,21 +38,19 @@ subset_working_app$subgroup[is.na(subset_working_app$subgroup)] <- "vpc"
 ```{r}
 library('sqldf')
 ```
-select cast('2016-12-25' as date) as christmas
-becomes
 
-select '2016-12-25'::date as christmas
+
 ```{r}
-test <- sqldf("
-    SELECT  anid 
-    , case when person_rank=1 then race else null end as race
-    , 1 unique_applicants
-    , matched_app as matched_applicants
-    , CASE WHEN successful_app = TRUE AND case when es_n2016g =1 then 1 else 0 end = 1 then 1 else null end general_election_voters_2016
-    
-    , CASE WHEN roll_changing_app = TRUE AND case when es_n2016g =1 then 1 else 0 end = 1 then 1 else null end general_election_roll_changing_voters_2016
-    
-    , CASE WHEN new_registrant = TRUE AND case when es_n2016g =1 then 1 else 0 end = 1 then 1 else null end general_election_new_voters_2016
+test <- sqldf("    
+SELECT anid 
+    , subgroup
+    , program_type
+    , timeframe 
+    , 1 unique_applicants 
+    , count(*) records_submitted 
+    , CASE WHEN bool_or(successful_app) = 1 AND max(case when es_n2016g =1 then 1 else 0 end) = 1 then 1 else null end general_election_voters_2016  
+    , CASE WHEN bool_or(roll_changing_app) = 1 AND max(case when es_n2016g =1 then 1 else 0 end) = 1 then 1 else null end general_election_roll_changing_voters_2016
+    , CASE WHEN bool_or(new_registrant) = 1 AND max(case when es_n2016g =1 then 1 else 0 end) = 1 then 1 else null end general_election_new_voters_2016
     FROM subset_working_app
-    ")
+    group By 1,2,3,4")
 ```
