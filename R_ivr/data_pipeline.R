@@ -11,7 +11,7 @@
 if(exists("merged_data"))
   rm("merged_data")
 
-path <- "/Users/anthonygoss/Projects/circle/R_ivr/data"
+path <- "/Users/anthonygoss/Projects/circle/R_ivr/real_data"
 
 # Step 1. Quality check. Do the names of all files match?
 source("/Users/anthonygoss/Projects/circle/R_ivr/check_names.R")
@@ -48,6 +48,7 @@ for (file in file_list){
 # Step 3: Call a function to perform counts of the data
 
 # Credit to Prabhat Gautam
+# 
 source("/Users/anthonygoss/Projects/circle/R_ivr/count_data.R")
 
 # output: An Excel Spreadsheet with the appropriate counts
